@@ -25,19 +25,20 @@ jobs:
       - name: Create and start virtual environment
         run: |
           cd studybud
-          python -m venv .venv
+          python -m venv venv
           source venv/bin/activate
       
       - name: Install dependencies
         run: |
           cd studybud
-          python manage.py collectstatic --noinput
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          
 
       - name: Collect static files
         run: |
           cd studybud
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          python manage.py collectstatic --noinput
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
