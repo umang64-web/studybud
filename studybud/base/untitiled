@@ -1,0 +1,66 @@
+
+// downloadBtn.addEventListener('click', async function() {
+//     try {
+//         const pdfDoc = await PDFDocument.create();
+
+//         if (isImage) {
+//             const imgData = canvas.toDataURL('image/png');
+//             const img = await pdfDoc.embedPng(imgData);
+            
+//             const aspectRatio = canvas.width / canvas.height;
+//             const pageWidth = 612;
+//             const pageHeight = pageWidth / aspectRatio;
+            
+//             const page = pdfDoc.addPage([pageWidth, pageHeight]);
+//             page.drawImage(img, {
+//                 x: 0,
+//                 y: 0,
+//                 width: pageWidth,
+//                 height: pageHeight,
+//             });
+//         } else {
+//             const existingPdfBytes = await fileInput.files[0].arrayBuffer();
+//             const existingPdfDoc = await PDFDocument.load(existingPdfBytes);
+//             const copiedPages = await pdfDoc.copyPages(existingPdfDoc, existingPdfDoc.getPageIndices());
+//             copiedPages.forEach((page) => pdfDoc.addPage(page));
+//         }
+
+//         const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
+
+//         for (let i = 0; i < pdfDoc.getPageCount(); i++) {
+//             const page = pdfDoc.getPage(i);
+//             const { width, height } = page.getSize();
+
+//             for (const stamp of stamps) {
+//                 if (stamp.page - 1 === i) {
+                    
+//                         const imgBytes = await fetch(stamp.image).then(res => res.arrayBuffer());
+//                         const img = await pdfDoc.embedPng(imgBytes);
+//                         const scaleFactor = width / canvas.width;
+//                         const stampSize = stamp.size * scaleFactor;
+//                         page.drawImage(img, {
+//                             x: stamp.x * scaleFactor,
+//                             y: height - ((stamp.y + stamp.size) * scaleFactor),
+//                             width: stampSize,
+//                             height: stampSize,
+//                         });
+                    
+//                 }
+//             }
+//         }
+
+//         const pdfBytes = await pdfDoc.save();
+//         const originalFileName = fileInput.files[0].name;
+
+//         const fileNameParts = originalFileName.split('.');
+//         fileNameParts.pop();
+//         const baseFileName = fileNameParts.join('.');
+//         const downloadFileName = `${baseFileName}_stamped.pdf`;
+//         downloadPdf(pdfBytes, downloadFileName);
+//         location.reload()
+        
+//     } catch (error) {
+//         console.error('Error generating PDF:', error);
+//         alert('An error occurred while generating the PDF. Please try again.');
+//     }
+// });
